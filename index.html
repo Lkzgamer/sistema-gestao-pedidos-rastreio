@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#142426">
+    <meta name="description" content="Painel de gestão e acompanhamento de pedidos têxteis do Agreste Pernambucano.">
+    <title>Fio a Fio — Gestão de pedidos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#painel" aria-label="Fio a Fio, início">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-copy"><strong>fio a fio</strong><small>gestão têxtil</small></span>
+        </a>
+
+        <div class="workspace-label">ESPAÇO DE TRABALHO</div>
+        <button class="workspace-switch" type="button">
+          <span class="workspace-avatar">AG</span>
+          <span class="workspace-name"><strong>Ateliê Girassol</strong><small>Caruaru, PE</small></span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </button>
+
+        <div class="nav-label">MENU PRINCIPAL</div>
+        <nav class="main-nav" aria-label="Menu principal">
+          <button class="nav-link active" type="button" data-view="painel"><span class="nav-icon">◫</span>Painel geral</button>
+          <button class="nav-link" type="button" data-view="cadastro"><span class="nav-icon">＋</span>Novo pedido</button>
+          <button class="nav-link" type="button" data-view="consulta"><span class="nav-icon">⌕</span>Consultar pedidos</button>
+          <button class="nav-link" type="button" data-view="historico"><span class="nav-icon">◷</span>Histórico</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="help-card">
+            <span class="help-spark">✳</span>
+            <strong>Feito no Agreste.</strong>
+            <p>Organize sua produção e acompanhe cada pedido de perto.</p>
+            <span class="help-decoration" aria-hidden="true">〰</span>
+          </div>
+          <button class="profile-button" type="button">
+            <span class="profile-avatar">MA</span>
+            <span class="profile-copy"><strong>Maria Almeida</strong><small>Administradora</small></span>
+            <span class="profile-menu" aria-hidden="true">···</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Abrir menu">☰</button>
+          <div class="breadcrumb"><span>Ateliê Girassol</span><span class="breadcrumb-separator">/</span><strong id="breadcrumb-current">Painel geral</strong></div>
+          <div class="topbar-actions">
+            <span class="today-date" id="today-date"></span>
+            <button class="icon-button notification-button" type="button" aria-label="Notificações">
+              <span aria-hidden="true">♧</span><i></i>
+            </button>
+            <span class="topbar-avatar">MA</span>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="view active" id="view-painel" aria-labelledby="dashboard-title">
+            <div class="page-heading dashboard-heading">
+              <div>
+                <p class="eyebrow"><span class="eyebrow-dot"></span> <span id="dashboard-date"></span></p>
+                <h1 id="dashboard-title">Bom dia, Maria <span class="wave">✳</span></h1>
+                <p class="heading-subtitle">Aqui está o resumo da sua produção. Vamos fazer acontecer?</p>
+              </div>
+              <button class="button button-primary" type="button" data-goto="cadastro"><span>＋</span> Novo pedido</button>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Pedidos em andamento</span><span class="stat-icon icon-lilac">◷</span></div>
+                <div class="stat-value">24 <span class="stat-change positive">↗ 12%</span></div>
+                <p class="stat-note">em relação ao mês passado</p>
+                <div class="stat-sparkline sparkline-purple" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Entregas esta semana</span><span class="stat-icon icon-green">↗</span></div>
+                <div class="stat-value">08 <span class="stat-change positive">↗ 2 a mais</span></div>
+                <p class="stat-note">comparado à semana passada</p>
+                <div class="stat-sparkline sparkline-green" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Aguardando aprovação</span><span class="stat-icon icon-yellow">◉</span></div>
+                <div class="stat-value">05 <span class="stat-change neutral">precisam de você</span></div>
+                <p class="stat-note">confira os detalhes dos pedidos</p>
+                <div class="stat-sparkline sparkline-yellow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <section class="panel orders-panel">
+                <div class="panel-heading">
+                  <div><h2>Pedidos recentes</h2><p>Acompanhe o que está acontecendo na sua produção.</p></div>
+                  <button class="text-button" type="button" data-goto="consulta">Ver todos <span>→</span></button>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>PEDIDO</th><th>CLIENTE</th><th>PRODUTO</th><th>ENTREGA</th><th>STATUS</th></tr></thead>
+                    <tbody id="dashboard-orders"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="panel production-panel">
+                <div class="panel-heading">
+                  <div><h2>Visão da produção</h2><p>Pedidos por etapa</p></div>
+                  <button class="period-button" type="button">Este mês <span>⌄</span></button>
+                </div>
+                <div class="production-content">
+                  <div class="donut-wrap">
+                    <div class="donut-chart"><div class="donut-center"><strong>24</strong><span>pedidos</span></div></div>
+                  </div>
+                  <div class="legend">
+                    <div><i class="legend-dot dot-corte"></i><span>Corte</span><strong>6</strong></div>
+                    <div><i class="legend-dot dot-costura"></i><span>Costura</span><strong>9</strong></div>
+                    <div><i class="legend-dot dot-acabamento"></i><span>Acabamento</span><strong>5</strong></div>
+                    <div><i class="legend-dot dot-pronto"></i><span>Pronto</span><strong>4</strong></div>
+                  </div>
+                </div>
+                <div class="production-footer"><span class="footer-check">✓</span> Sua produção está em dia!</div>
+              </section>
+            </div>
+
+            <section class="panel deliveries-panel">
+              <div class="panel-heading">
+                <div><h2>Próximas entregas</h2><p>Não deixe nenhum prazo passar.</p></div>
+                <button class="text-button" type="button" data-goto="historico">Ver histórico <span>→</span></button>
+              </div>
+              <div class="delivery-list" id="delivery-list"></div>
+            </section>
+            <footer class="page-footer"><span>Fio a Fio</span> · Feito com carinho no Agreste Pernambucano <span class="footer-flower">✳</span></footer>
+          </section>
+
+          <section class="view" id="view-cadastro" aria-labelledby="registration-title">
+            <div class="page-heading">
+              <div><p class="eyebrow"><span class="eyebrow-dot"></span> PRODUÇÃO</p><h1 id="registration-title">Novo pedido <span class="wave">✳</span></h1><p class="heading-subtitle">Preencha os detalhes para começar a acompanhar sua produção.</p></div>
+              <span class="draft-tag"><i></i> Rascunho</span>
+            </div>
+            <form class="panel form-panel" id="order-form">
+              <div class="form-section">
+                <div class="form-section-heading"><span class="section-number">01</span><div><h2>Sobre o pedido</h2><p>As informações principais para identificar o pedido.</p></div></div>
+                <div class="form-grid">
+                  <label class="field"><span>Nome do cliente <b>*</b></span><input name="client" placeholder="Ex.: Boutique Flor de Mandacaru" required></label>
+                  <label class="field"><span>Telefone para contato</span><input name="phone" type="tel" placeholder="(87) 9 0000-0000"></label>
+                  <label class="field"><span>Produto <b>*</b></span><input name="product" placeholder="Ex.: Conjunto feminino" required></label>
+                  <label class="field"><span>Quantidade de peças <b>*</b></span><input name="quantity" type="number" min="1" placeholder="Ex.: 50" required></label>
+                  <label class="field"><span>Valor por peça (R$)</span><input name="price" type="number" min="0" step="0.01" placeholder="0,00"></label>
+                  <label class="field"><span>Data de entrega <b>*</b></span><input name="dueDate" type="date" required></label>
+                </div>
+              </div>
+              <div class="form-divider"></div>
+              <div class="form-section">
+                <div class="form-section-heading"><span class="section-number">02</span><div><h2>Detalhes da produção</h2><p>Ajude sua equipe a entender o que precisa ser feito.</p></div></div>
+                <div class="form-grid">
+                  <label class="field"><span>Etapa inicial</span><select name="stage"><option value="Corte">Corte</option><option value="Costura">Costura</option><option value="Acabamento">Acabamento</option><option value="Pronto">Pronto</option></select></label>
+                  <label class="field"><span>Prioridade</span><select name="priority"><option value="Normal">Normal</option><option value="Alta">Alta</option></select></label>
+                  <label class="field field-full"><span>Observações</span><textarea name="notes" rows="4" placeholder="Detalhes sobre tecido, cores, tamanhos ou acabamentos..."></textarea></label>
+                </div>
+              </div>
+              <div class="form-actions"><p><b>*</b> Campos obrigatórios</p><div><button class="button button-secondary" type="reset">Limpar campos</button><button class="button button-primary" type="submit">Salvar pedido <span>→</span></button></div></div>
+            </form>
+            <footer class="page-footer"><span>Fio a Fio</span> · Feito com carinho no Agreste Pernambucano <span class="footer-flower">✳</span></footer>
+          </section>
+
+          <section class="view" id="view-consulta" aria-labelledby="consultation-title">
+            <div class="page-heading">
+              <div><p class="eyebrow"><span class="eyebrow-dot"></span> ACOMPANHAMENTO</p><h1 id="consultation-title">Consultar pedidos <span class="wave">✳</span></h1><p class="heading-subtitle">Encontre um pedido e veja em que etapa da produção ele está.</p></div>
+              <button class="button button-primary" type="button" data-goto="cadastro"><span>＋</span> Novo pedido</button>
+            </div>
+            <section class="panel consultation-panel">
+              <div class="filter-bar">
+                <label class="search-field"><span aria-hidden="true">⌕</span><input id="order-search" type="search" placeholder="Buscar por pedido, cliente ou produto..." aria-label="Buscar pedidos"></label>
+                <label class="filter-select"><span class="sr-only">Filtrar por status</span><select id="status-filter"><option value="">Todos os status</option><option>Em produção</option><option>Aguardando aprovação</option><option>Pronto para entrega</option><option>Entregue</option></select></label>
+                <button class="filter-button" id="clear-filters" type="button">Limpar filtros <span>↺</span></button>
+              </div>
+              <div class="table-wrap">
+                <table class="consultation-table">
+                  <thead><tr><th>PEDIDO</th><th>CLIENTE</th><th>PRODUTO</th><th>QUANTIDADE</th><th>ENTREGA</th><th>STATUS</th><th></th></tr></thead>
+                  <tbody id="consultation-orders"></tbody>
+                </table>
+              </div>
+              <div class="table-bottom"><span id="results-count"></span><span>Dados de demonstração</span></div>
+            </section>
+            <footer class="page-footer"><span>Fio a Fio</span> · Feito com carinho no Agreste Pernambucano <span class="footer-flower">✳</span></footer>
+          </section>
+
+          <section class="view" id="view-historico" aria-labelledby="history-title">
+            <div class="page-heading">
+              <div><p class="eyebrow"><span class="eyebrow-dot"></span> ACOMPANHAMENTO</p><h1 id="history-title">Histórico de pedidos <span class="wave">✳</span></h1><p class="heading-subtitle">Uma visão completa do caminho de cada peça, do corte à entrega.</p></div>
+              <button class="button button-secondary" id="history-filter" type="button"><span>☷</span> Últimos 90 dias <span>⌄</span></button>
+            </div>
+            <section class="panel history-panel">
+              <div class="panel-heading">
+                <div><h2>Linha do tempo</h2><p>Atividades recentes da sua produção.</p></div>
+                <span class="history-period">JUNHO 2024</span>
+              </div>
+              <div class="timeline" id="timeline"></div>
+            </section>
+            <section class="panel history-summary">
+              <span class="summary-icon">✳</span><div><strong>Um trabalho bem feito merece ser lembrado.</strong><p>Este espaço reúne os pedidos concluídos e as principais atualizações da sua produção.</p></div>
+            </section>
+            <footer class="page-footer"><span>Fio a Fio</span> · Feito com carinho no Agreste Pernambucano <span class="footer-flower">✳</span></footer>
+          </section>
+        </div>
+      </main>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+  </body>
+</html>
